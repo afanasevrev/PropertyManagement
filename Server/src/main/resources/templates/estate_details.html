@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Недвижимость</title>
+    <link   rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Недвижимость</h1>
+    <p th:text="'Город: ' + ${selectedEstate.city}"/>
+    <p th:text="'Цена: ' + ${selectedEstate.price}"/>
+</div>
+<div class="container">
+    <img th:src="'data:image/jpeg;base64,' + ${imageData}" th:style="'width: ' + ${imageWidth} + '; height: ' + ${imageHeight}" alt="Изображение">
+</div>
+<div>
+    <form action="#" th:action="@{/subscribe}" th:object="${subscriber}" method="post">
+        <input type="text" th:value="${selectedEstate.id}" id="id" name="id" />
+        <input type="date" th:field="*{date}"/>
+        <p>Имя: <input type="text" placeholder="Введите имя" th:field="*{name}" /></p>
+        <p>Email <input type="text" placeholder="Введите email" th:field="*{email}"/></p>
+        <p>Цена <input type="text" placeholder="Введите цену" th:field="*{price}"/></p>
+        <p><input type="submit" value="Записаться" /> <input type="reset" value="Сброс" /></p>
+    </form>
+</div>
+</body>
+</html>

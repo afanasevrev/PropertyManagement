@@ -7,9 +7,11 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,21 @@ public class HomeController {
         model.addAttribute("estates", allEstates);
         return "estates";
     }
+    @GetMapping("/details/{id}")
+    private String getDetails(Model model, @PathVariable("id") int id) {
+        Estate estate = getEstates().get(id - 1);
+        model.addAttribute("selectedEstate", estate);
+        byte[] imageData = estate.getPhoto();
 
+        String base64Image = Base64.getEncoder().encodeToString(imageData);
+        model.addAttribute("imageData", base64Image);
+        model.addAttribute("imageWidth", "300px");
+        model.addAttribute("imageHeight", "300px");
+
+        //model.addAttribute("subscriber", new Subscriber());
+
+        return "estate_details";
+    }
     /**
      * Метод возвращает список квартир из БД
      * @return
