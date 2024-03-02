@@ -7,9 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Base64;
@@ -39,6 +37,13 @@ public class HomeController {
 
         return "estate_details";
     }
+    @PostMapping("/subscribe")
+    private String writeScribe(@ModelAttribute Subscriber subscriber, Model model) {
+        Suggestion suggestion = new Suggestion(subscriber.getName(), subscriber.getEmail(), subscriber.getPrice());
+        writeSuggestion(suggestion);
+        model.addAttribute("isRegistered", "Ваша заявка успешно отправлена");
+        return "is_registered";
+    }
     /**
      * Метод возвращает список квартир из БД
      * @return
@@ -60,12 +65,12 @@ public class HomeController {
     /**
      * Метод записывает в таблицу БД новую заявку от покупателя
      */
-    public synchronized void writeSession(Suggestion suggestion) {
+    public synchronized void writeSuggestion(Suggestion suggestion) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Старт транзакции
             transaction = session.beginTransaction();
-            // Добавим в БД сессию
+            // Добавим в БД заявку
             session.persist(suggestion);
             // Коммит транзакции
             transaction.commit();

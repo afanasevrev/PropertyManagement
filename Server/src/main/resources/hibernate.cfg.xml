@@ -11,5 +11,6 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <mapping class="com.example.Server.hibernate.Admins"/>
         <mapping class="com.example.Server.hibernate.Estate"/>
+        <mapping class="com.example.Server.hibernate.Suggestion"/>
     </session-factory>
 </hibernate-configuration>
