@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.client.AdminsPage">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="571.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Заявки">
+               <content>
+                  <TableView prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn prefWidth="102.4000244140625" text="Имя" />
+                      <TableColumn prefWidth="172.79998779296875" text="email" />
+                        <TableColumn prefWidth="287.199951171875" text="Цена, руб" />
+                    </columns>
+                  </TableView>
+               </content>
+            </Tab>
+          <Tab text="Добавить недвижимость" />
+        </tabs>
+      </TabPane>
+      <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Обновить" />
+   </children>
+</AnchorPane>
