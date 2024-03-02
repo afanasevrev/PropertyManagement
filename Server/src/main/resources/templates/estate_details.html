@@ -19,11 +19,10 @@
 <div>
     <form action="#" th:action="@{/subscribe}" th:object="${subscriber}" method="post">
         <input type="text" th:value="${selectedEstate.id}" id="id" name="id" />
-        <input type="date" th:field="*{date}"/>
         <p>Имя: <input type="text" placeholder="Введите имя" th:field="*{name}" /></p>
         <p>Email <input type="text" placeholder="Введите email" th:field="*{email}"/></p>
         <p>Цена <input type="text" placeholder="Введите цену" th:field="*{price}"/></p>
-        <p><input type="submit" value="Записаться" /> <input type="reset" value="Сброс" /></p>
+        <p><input type="submit" value="Отправить запрос" /> <input type="reset" value="Сброс" /></p>
     </form>
 </div>
 </body>

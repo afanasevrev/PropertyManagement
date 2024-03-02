@@ -2,6 +2,7 @@ package com.example.Server;
 
 import com.example.Server.hibernate.Estate;
 import com.example.Server.hibernate.HibernateUtil;
+import com.example.Server.hibernate.Suggestion;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class HomeController {
         model.addAttribute("imageWidth", "300px");
         model.addAttribute("imageHeight", "300px");
 
-        //model.addAttribute("subscriber", new Subscriber());
+        model.addAttribute("subscriber", new Subscriber());
 
         return "estate_details";
     }
@@ -54,5 +55,25 @@ public class HomeController {
             e.printStackTrace();
         }
         return estates;
+    }
+
+    /**
+     * Метод записывает в таблицу БД новую заявку от покупателя
+     */
+    public synchronized void writeSession(Suggestion suggestion) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Старт транзакции
+            transaction = session.beginTransaction();
+            // Добавим в БД сессию
+            session.persist(suggestion);
+            // Коммит транзакции
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 }
