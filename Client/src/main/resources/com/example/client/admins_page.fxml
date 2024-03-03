@@ -7,23 +7,23 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.example.client.AdminsPageController" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="571.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Заявки">
                <content>
-                  <TableView prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0">
                     <columns>
-                      <TableColumn prefWidth="102.4000244140625" text="Имя" />
-                      <TableColumn prefWidth="172.79998779296875" text="email" />
-                        <TableColumn prefWidth="287.199951171875" text="Цена, руб" />
+                      <TableColumn fx:id="name" prefWidth="102.0" text="Имя" />
+                      <TableColumn fx:id="email" prefWidth="172.0" text="email" />
+                        <TableColumn fx:id="price" prefWidth="287.0" text="Цена, руб" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Обновить" />
+      <Button fx:id="buttonUpdate" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Обновить" />
    </children>
 </AnchorPane>
