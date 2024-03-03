@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="com.example.client.AdminsPageController" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.example.client.AdminsPageController" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <TabPane layoutX="14.0" layoutY="14.0" prefHeight="329.0" prefWidth="571.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -24,6 +24,6 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="buttonUpdate" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Обновить" />
+      <Button fx:id="buttonUpdate" onAction="#setButtonUpdate" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Обновить" />
    </children>
 </AnchorPane>

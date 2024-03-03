@@ -3,6 +3,7 @@ package com.example.Server;
 import com.example.Server.hibernate.Admins;
 import com.example.Server.hibernate.Estate;
 import com.example.Server.hibernate.HibernateUtil;
+import com.example.Server.hibernate.Suggestion;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,10 @@ public class AppController {
     private String getInfo(){
         return "Разработка комплекса программных приложений для агентства недвижимости";
     }
-
+    @GetMapping("/suggestions")
+    private List<Suggestion> suggestions() {
+        return getSuggestions();
+    }
     @GetMapping("/authorized/{login}&{password}")
     private String getAuthorized(@PathVariable String login, @PathVariable String password) {
         List<Admins> admins = new ArrayList<>();
@@ -56,5 +60,23 @@ public class AppController {
             e.printStackTrace();
         }
         return admins;
+    }
+
+    /**
+     * Метод возвращает список сделок из БД
+     * @return
+     */
+    public synchronized List<Suggestion> getSuggestions() {
+        Transaction transaction = null;
+        List<Suggestion> suggestions = new ArrayList<>();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            suggestions = session.createQuery("from Suggestion", Suggestion.class).list();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return suggestions;
     }
 }
